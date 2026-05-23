@@ -66,7 +66,7 @@ const Dashboard = () => {
 
       const response =
         await axios.post(
-          "http://localhost:5000/api/interview/create",
+          "https://interviewiq-ai-xutu.onrender.com/api/interview/create",
           {
             role,
             difficulty,

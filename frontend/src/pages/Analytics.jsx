@@ -365,8 +365,6 @@ const Analytics = () => {
           </div>
         </div>
 
-        {/* PERFORMANCE */}
-
         <div
           className="
           bg-white/5
@@ -391,8 +389,6 @@ const Analytics = () => {
           </h2>
 
           <div className="space-y-8">
-
-            {/* TECHNICAL */}
 
             <div>
               <div className="flex justify-between mb-3">
@@ -419,8 +415,6 @@ const Analytics = () => {
               </div>
             </div>
 
-            {/* PROBLEM */}
-
             <div>
               <div className="flex justify-between mb-3">
                 <span>
@@ -445,8 +439,6 @@ const Analytics = () => {
                 />
               </div>
             </div>
-
-            {/* COMMUNICATION */}
 
             <div>
               <div className="flex justify-between mb-3">

@@ -62,7 +62,7 @@ const Home = () => {
         const response =
           await axios.post(
 
-            "http://localhost:5000/api/auth/login",
+            "https://interviewiq-ai-xutu.onrender.com/api/auth/login",
 
             {
 
@@ -102,7 +102,7 @@ const Home = () => {
         const response =
           await axios.post(
 
-            "http://localhost:5000/api/auth/register",
+           "https://interviewiq-ai-xutu.onrender.com/api/auth/register",
 
             {
 
