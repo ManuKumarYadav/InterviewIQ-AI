@@ -1,64 +1,59 @@
-const axios = require("axios");
+const Interview = require("../models/Interview");
 
-exports.generateInterview = async (req, res) => {
+const createInterview = async (
+  req,
+  res
+) => {
+
   try {
+
     const {
       role,
       difficulty,
       topic,
     } = req.body;
 
-    const prompt = `
-Generate interview questions and answers.
+    const content = `
+AI Mock Interview
 
 Role: ${role}
 Difficulty: ${difficulty}
 Topic: ${topic}
 
-Explain in easy language with examples.
+1. Explain ${topic}
+
+2. Advantages of ${topic}
+
+3. Real world use case
+
+4. Importance of ${topic}
 `;
 
-    const response = await axios.post("https://openrouter.ai/api/v1/chat/completions",
-      {
-        model: "deepseek/deepseek-chat",
-
-        messages: [
-          {
-            role: "user",
-            content: prompt,
-          },
-        ],
-      },
-      {
-        headers: {
-
-          Authorization:
-            `Bearer ${process.env.OPENROUTER_API_KEY}`,
-
-          "Content-Type":
-            "application/json",
-        },
-      }
-    );
     const interview =
-      response.data.choices[0]
-      .message.content;
+      await Interview.create({
+        role,
+        difficulty,
+        topic,
+        content,
+      });
 
-    res.status(200).json({
-
+    res.status(201).json({
       success: true,
       interview,
-
     });
+
   } catch (error) {
 
-    console.log("AI ERROR:", error.response?.data || error.message);
+    console.log(error);
 
     res.status(500).json({
-
       success: false,
-
-      message: "Failed to generate AI interview",
+      message:
+        "Failed to generate interview",
     });
   }
+};
+
+module.exports = {
+  createInterview,
 };

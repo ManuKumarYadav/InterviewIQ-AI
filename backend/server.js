@@ -1,34 +1,58 @@
 const express = require("express");
-
 const cors = require("cors");
-
 const dotenv = require("dotenv");
-
 const connectDB = require("./config/db");
+
+
+// ROUTES
+
+const authRoutes = require("./routes/authRoutes");
+
+const interviewRoutes = require("./routes/interviewRoutes");
+
+
+// CONFIG
 
 dotenv.config();
 
+
+// DATABASE CONNECTION
+
 connectDB();
 
+
+// INITIALIZE APP
+
 const app = express();
+
+
+// ================= MIDDLEWARE =================
 
 app.use(cors());
 
 app.use(express.json());
 
-app.use(express.urlencoded({
-  extended: true,
-}));
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+
+
+// ================= API ROUTES =================
 
 app.use(
   "/api/auth",
-  require("./routes/authRoutes")
+  authRoutes
 );
 
 app.use(
   "/api/interview",
-  require("./routes/interviewRoutes")
+  interviewRoutes
 );
+
+
+// ================= HOME ROUTE =================
 
 app.get("/", (req, res) => {
 
@@ -37,9 +61,13 @@ app.get("/", (req, res) => {
     success: true,
 
     message:
-      "AI Interview Platform API Running ",
+      "AI Interview Platform API Running",
   });
+
 });
+
+
+// ================= ERROR HANDLER =================
 
 app.use((err, req, res, next) => {
 
@@ -49,9 +77,13 @@ app.use((err, req, res, next) => {
 
     success: false,
 
-    message: "Server Error",
+    message: err.message || "Server Error",
   });
+
 });
+
+
+// ================= SERVER =================
 
 const PORT =
   process.env.PORT || 5000;
@@ -61,4 +93,5 @@ app.listen(PORT, () => {
   console.log(
     `Server running on port ${PORT}`
   );
+
 });

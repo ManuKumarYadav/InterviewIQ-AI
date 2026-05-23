@@ -3,12 +3,12 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  generateInterview,
+  createInterview,
 } = require("../controllers/interviewController");
 
 router.post(
-  "/generate",
-  generateInterview
+  "/create",
+  createInterview
 );
 
 module.exports = router;
