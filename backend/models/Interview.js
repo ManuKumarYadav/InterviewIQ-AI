@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const interviewSchema = new mongoose.Schema({
-
   role: {
     type: String,
     required: true,
@@ -26,10 +25,6 @@ const interviewSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-
 });
 
-module.exports = mongoose.model(
-  "Interview",
-  interviewSchema
-);
+module.exports = mongoose.model("Interview", interviewSchema);

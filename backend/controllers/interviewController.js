@@ -1,17 +1,8 @@
 const Interview = require("../models/Interview");
 
-const createInterview = async (
-  req,
-  res
-) => {
-
+const createInterview = async (req, res) => {
   try {
-
-    const {
-      role,
-      difficulty,
-      topic,
-    } = req.body;
+    const { role, difficulty, topic } = req.body;
 
     const content = `
 AI Mock Interview
@@ -29,27 +20,23 @@ Topic: ${topic}
 4. Importance of ${topic}
 `;
 
-    const interview =
-      await Interview.create({
-        role,
-        difficulty,
-        topic,
-        content,
-      });
+    const interview = await Interview.create({
+      role,
+      difficulty,
+      topic,
+      content,
+    });
 
     res.status(201).json({
       success: true,
       interview,
     });
-
   } catch (error) {
-
     console.log(error);
 
     res.status(500).json({
       success: false,
-      message:
-        "Failed to generate interview",
+      message: "Failed to generate interview",
     });
   }
 };

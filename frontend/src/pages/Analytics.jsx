@@ -14,13 +14,9 @@ import {
 } from "lucide-react";
 
 const Analytics = () => {
-
   const navigate = useNavigate();
 
-  const user =
-    JSON.parse(
-      localStorage.getItem("user")
-    ) || {};
+  const user = JSON.parse(localStorage.getItem("user")) || {};
 
   const initials = user?.name
     ? user.name
@@ -58,7 +54,6 @@ const Analytics = () => {
       "
       >
         <div className="flex flex-col items-center gap-5">
-
           {/* LOGO */}
 
           <div
@@ -83,9 +78,7 @@ const Analytics = () => {
           {/* HOME */}
 
           <button
-            onClick={() =>
-              navigate("/dashboard")
-            }
+            onClick={() => navigate("/dashboard")}
             className="
             w-14
             h-14
@@ -127,9 +120,7 @@ const Analytics = () => {
           {/* SETTINGS */}
 
           <button
-            onClick={() =>
-              navigate("/settings")
-            }
+            onClick={() => navigate("/settings")}
             className="
             w-14
             h-14
@@ -195,7 +186,6 @@ const Analytics = () => {
         "
         >
           <div>
-
             <h1
               className="
               text-4xl
@@ -278,18 +268,11 @@ const Analytics = () => {
             duration-300
           "
           >
-            <TrendingUp
-              className="text-cyan-400 mb-4"
-              size={35}
-            />
+            <TrendingUp className="text-cyan-400 mb-4" size={35} />
 
-            <h2 className="text-4xl font-bold">
-              85%
-            </h2>
+            <h2 className="text-4xl font-bold">85%</h2>
 
-            <p className="text-gray-400 mt-2">
-              Average Score
-            </p>
+            <p className="text-gray-400 mt-2">Average Score</p>
           </div>
 
           <div
@@ -302,18 +285,11 @@ const Analytics = () => {
             backdrop-blur-xl
           "
           >
-            <Clock3
-              className="text-purple-400 mb-4"
-              size={35}
-            />
+            <Clock3 className="text-purple-400 mb-4" size={35} />
 
-            <h2 className="text-4xl font-bold">
-              42h
-            </h2>
+            <h2 className="text-4xl font-bold">42h</h2>
 
-            <p className="text-gray-400 mt-2">
-              Practice Time
-            </p>
+            <p className="text-gray-400 mt-2">Practice Time</p>
           </div>
 
           <div
@@ -326,18 +302,11 @@ const Analytics = () => {
             backdrop-blur-xl
           "
           >
-            <Trophy
-              className="text-yellow-400 mb-4"
-              size={35}
-            />
+            <Trophy className="text-yellow-400 mb-4" size={35} />
 
-            <h2 className="text-4xl font-bold">
-              18
-            </h2>
+            <h2 className="text-4xl font-bold">18</h2>
 
-            <p className="text-gray-400 mt-2">
-              Interviews Completed
-            </p>
+            <p className="text-gray-400 mt-2">Interviews Completed</p>
           </div>
 
           <div
@@ -350,18 +319,11 @@ const Analytics = () => {
             backdrop-blur-xl
           "
           >
-            <Brain
-              className="text-pink-400 mb-4"
-              size={35}
-            />
+            <Brain className="text-pink-400 mb-4" size={35} />
 
-            <h2 className="text-4xl font-bold">
-              92%
-            </h2>
+            <h2 className="text-4xl font-bold">92%</h2>
 
-            <p className="text-gray-400 mt-2">
-              AI Confidence
-            </p>
+            <p className="text-gray-400 mt-2">AI Confidence</p>
           </div>
         </div>
 
@@ -389,16 +351,11 @@ const Analytics = () => {
           </h2>
 
           <div className="space-y-8">
-
             <div>
               <div className="flex justify-between mb-3">
-                <span>
-                  Technical Skills
-                </span>
+                <span>Technical Skills</span>
 
-                <span className="text-cyan-400 font-bold">
-                  90%
-                </span>
+                <span className="text-cyan-400 font-bold">90%</span>
               </div>
 
               <div className="w-full h-4 bg-white/10 rounded-full overflow-hidden">
@@ -417,13 +374,9 @@ const Analytics = () => {
 
             <div>
               <div className="flex justify-between mb-3">
-                <span>
-                  Problem Solving
-                </span>
+                <span>Problem Solving</span>
 
-                <span className="text-purple-400 font-bold">
-                  82%
-                </span>
+                <span className="text-purple-400 font-bold">82%</span>
               </div>
 
               <div className="w-full h-4 bg-white/10 rounded-full overflow-hidden">
@@ -442,13 +395,9 @@ const Analytics = () => {
 
             <div>
               <div className="flex justify-between mb-3">
-                <span>
-                  Communication
-                </span>
+                <span>Communication</span>
 
-                <span className="text-green-400 font-bold">
-                  76%
-                </span>
+                <span className="text-green-400 font-bold">76%</span>
               </div>
 
               <div className="w-full h-4 bg-white/10 rounded-full overflow-hidden">
@@ -490,10 +439,7 @@ const Analytics = () => {
             mb-6
           "
           >
-            <Bot
-              size={40}
-              className="text-cyan-400"
-            />
+            <Bot size={40} className="text-cyan-400" />
 
             <h2
               className="
@@ -514,16 +460,14 @@ const Analytics = () => {
             leading-8
           "
           >
-            Your interview performance is improving consistently.
-            You demonstrate strong backend development knowledge,
-            confidence in problem-solving, and solid understanding
-            of modern technologies.
+            Your interview performance is improving consistently. You
+            demonstrate strong backend development knowledge, confidence in
+            problem-solving, and solid understanding of modern technologies.
             <br />
             <br />
-            Continue practicing system design, communication,
-            optimization techniques, and real-world project
-            explanations to become placement ready for top
-            product-based companies.
+            Continue practicing system design, communication, optimization
+            techniques, and real-world project explanations to become placement
+            ready for top product-based companies.
           </p>
         </div>
       </div>

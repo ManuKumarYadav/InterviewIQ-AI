@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Settings = () => {
   const navigate = useNavigate();
 
-  const user =
-    JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user"));
 
   return (
     <div
@@ -16,7 +15,6 @@ const Settings = () => {
         p-10
       "
     >
-
       <div
         className="
           flex
@@ -25,7 +23,6 @@ const Settings = () => {
           mb-10
         "
       >
-
         <h1
           className="
             text-6xl
@@ -41,9 +38,7 @@ const Settings = () => {
         </h1>
 
         <button
-          onClick={() =>
-            navigate("/dashboard")
-          }
+          onClick={() => navigate("/dashboard")}
           className="
             px-6
             py-3
@@ -55,7 +50,6 @@ const Settings = () => {
         >
           Back
         </button>
-
       </div>
 
       <div
@@ -69,7 +63,6 @@ const Settings = () => {
           backdrop-blur-xl
         "
       >
-
         <div
           className="
             w-28
@@ -86,25 +79,18 @@ const Settings = () => {
             mb-8
           "
         >
-          {
-            user?.name
-              ?.split(" ")
-              ?.map((word) => word[0])
-              ?.join("")
-              ?.toUpperCase()
-          }
+          {user?.name
+            ?.split(" ")
+            ?.map((word) => word[0])
+            ?.join("")
+            ?.toUpperCase()}
         </div>
 
-        <h2 className="text-3xl font-bold">
-          {user?.name}
-        </h2>
+        <h2 className="text-3xl font-bold">{user?.name}</h2>
 
-        <p className="text-gray-400 mt-2">
-          {user?.email}
-        </p>
+        <p className="text-gray-400 mt-2">{user?.email}</p>
 
         <div className="mt-10 space-y-6">
-
           <div
             className="
               bg-[#111827]
@@ -112,13 +98,10 @@ const Settings = () => {
               rounded-2xl
             "
           >
-            <h3 className="text-2xl font-bold">
-              Account Settings
-            </h3>
+            <h3 className="text-2xl font-bold">Account Settings</h3>
 
             <p className="text-gray-400 mt-2">
-              Manage your interview
-              preferences and account.
+              Manage your interview preferences and account.
             </p>
           </div>
 
@@ -129,21 +112,14 @@ const Settings = () => {
               rounded-2xl
             "
           >
-            <h3 className="text-2xl font-bold">
-              Security
-            </h3>
+            <h3 className="text-2xl font-bold">Security</h3>
 
             <p className="text-gray-400 mt-2">
-              Your account is securely
-              protected with JWT
-              authentication.
+              Your account is securely protected with JWT authentication.
             </p>
           </div>
-
         </div>
-
       </div>
-
     </div>
   );
 };

@@ -1,14 +1,11 @@
 import axios from "axios";
 
-const API ="http://localhost:5000/api/interview";
-export const generateInterview =
-  async (data) => {
+const API = "http://localhost:5000/api/interview";
+export const generateInterview = async (data) => {
+  const response = await axios.post(
+    `${API}/generate`,
 
-    const response = await axios.post(
-
-      `${API}/generate`,
-
-      data
-    );
-    return response.data;
+    data,
+  );
+  return response.data;
 };

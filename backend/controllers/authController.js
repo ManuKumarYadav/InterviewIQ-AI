@@ -2,57 +2,35 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const registerUser = async (
-  req,
-  res
-) => {
-
+const registerUser = async (req, res) => {
   try {
+    const { name, email, password } = req.body;
 
-    const {
-      name,
+    const existingUser = await User.findOne({
       email,
-      password,
-    } = req.body;
-
-    const existingUser =
-      await User.findOne({
-        email,
-      });
+    });
 
     if (existingUser) {
-
       return res.status(400).json({
-
         success: false,
 
-        message:
-          "User already exists",
+        message: "User already exists",
       });
     }
 
-    const salt =
-      await bcrypt.genSalt(10);
+    const salt = await bcrypt.genSalt(10);
 
-    const hashedPassword =
-      await bcrypt.hash(
-        password,
-        salt
-      );
+    const hashedPassword = await bcrypt.hash(password, salt);
 
-    const user =
-      await User.create({
+    const user = await User.create({
+      name,
 
-        name,
+      email,
 
-        email,
-
-        password:
-          hashedPassword,
-      });
+      password: hashedPassword,
+    });
 
     const token = jwt.sign(
-
       {
         id: user._id,
       },
@@ -61,17 +39,15 @@ const registerUser = async (
 
       {
         expiresIn: "7d",
-      }
+      },
     );
 
     res.status(201).json({
-
       success: true,
 
       token,
 
       user: {
-
         id: user._id,
 
         name: user.name,
@@ -79,68 +55,44 @@ const registerUser = async (
         email: user.email,
       },
     });
-
   } catch (error) {
-
     console.log(error);
 
     res.status(500).json({
-
       success: false,
 
-      message:
-        "Server Error",
+      message: "Server Error",
     });
   }
 };
 
-const loginUser = async (
-  req,
-  res
-) => {
-
+const loginUser = async (req, res) => {
   try {
+    const { email, password } = req.body;
 
-    const {
+    const user = await User.findOne({
       email,
-      password,
-    } = req.body;
-
-    const user =
-      await User.findOne({
-        email,
-      });
+    });
 
     if (!user) {
-
       return res.status(400).json({
-
         success: false,
 
-        message:
-          "Invalid Email or Password",
+        message: "Invalid Email or Password",
       });
     }
 
-    const isMatch =
-      await bcrypt.compare(
-        password,
-        user.password
-      );
+    const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-
       return res.status(400).json({
-
         success: false,
 
-        message:
-          "Invalid Email or Password",
+        message: "Invalid Email or Password",
       });
     }
 
     const token = jwt.sign(
-
       {
         id: user._id,
       },
@@ -149,17 +101,15 @@ const loginUser = async (
 
       {
         expiresIn: "7d",
-      }
+      },
     );
 
     res.status(200).json({
-
       success: true,
 
       token,
 
       user: {
-
         id: user._id,
 
         name: user.name,
@@ -167,23 +117,18 @@ const loginUser = async (
         email: user.email,
       },
     });
-
   } catch (error) {
-
     console.log(error);
 
     res.status(500).json({
-
       success: false,
 
-      message:
-        "Server Error",
+      message: "Server Error",
     });
   }
 };
 
 module.exports = {
-
   registerUser,
 
   loginUser,

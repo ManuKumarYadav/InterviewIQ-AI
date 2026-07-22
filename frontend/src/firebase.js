@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
-import {getAuth,GoogleAuthProvider} from "firebase/auth";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 const firebaseConfig = {
-
   apiKey: "AIzaSyBUvozuWC8nYwNJLzkjnchNNLeVLGzy-J8",
 
   authDomain: "interviewiq-ai-6d642.firebaseapp.com",
@@ -18,6 +17,4 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 
-export const provider =
-  new GoogleAuthProvider();
-  
+export const provider = new GoogleAuthProvider();

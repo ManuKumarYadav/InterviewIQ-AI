@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter,Routes,Route,Navigate} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Interview from "./pages/Interview";
@@ -7,42 +7,22 @@ import Result from "./pages/Result";
 import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
 
-const ProtectedRoute = ({
-  children,
-}) => {
+const ProtectedRoute = ({ children }) => {
+  const token = localStorage.getItem("token");
 
-  const token =
-    localStorage.getItem("token");
-
-  return token ? (
-    children
-  ) : (
-    <Navigate
-      to="/"
-      replace
-    />
-  );
+  return token ? children : <Navigate to="/" replace />;
 };
 function App() {
-
   return (
-
     <BrowserRouter>
-
       <Routes>
-
-        <Route
-          path="/"
-          element={<Home />}
-        />
+        <Route path="/" element={<Home />} />
 
         <Route
           path="/dashboard"
           element={
             <ProtectedRoute>
-
               <Dashboard />
-
             </ProtectedRoute>
           }
         />
@@ -51,9 +31,7 @@ function App() {
           path="/interview"
           element={
             <ProtectedRoute>
-
               <Interview />
-
             </ProtectedRoute>
           }
         />
@@ -62,9 +40,7 @@ function App() {
           path="/result"
           element={
             <ProtectedRoute>
-
               <Result />
-
             </ProtectedRoute>
           }
         />
@@ -73,9 +49,7 @@ function App() {
           path="/analytics"
           element={
             <ProtectedRoute>
-
               <Analytics />
-
             </ProtectedRoute>
           }
         />
@@ -84,25 +58,13 @@ function App() {
           path="/settings"
           element={
             <ProtectedRoute>
-
               <Settings />
-
             </ProtectedRoute>
           }
         />
 
-        <Route
-          path="*"
-          element={
-            <Navigate
-              to="/dashboard"
-              replace
-            />
-          }
-        />
-
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
-
     </BrowserRouter>
   );
 }

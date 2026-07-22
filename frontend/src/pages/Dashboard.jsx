@@ -3,20 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
-import {
-  FaHome,
-  FaRobot,
-  FaChartBar,
-  FaCog,
-} from "react-icons/fa";
+import { FaHome, FaRobot, FaChartBar, FaCog } from "react-icons/fa";
 
 const Dashboard = () => {
-
   const navigate = useNavigate();
 
-  const storedUser = JSON.parse(
-    localStorage.getItem("user")
-  );
+  const storedUser = JSON.parse(localStorage.getItem("user"));
 
   const user = storedUser || {
     name: "Interview User",
@@ -28,65 +20,43 @@ const Dashboard = () => {
     ?.join("")
     ?.toUpperCase();
 
-  const [role, setRole] =
-    useState("");
+  const [role, setRole] = useState("");
 
-  const [difficulty, setDifficulty] =
-    useState("");
+  const [difficulty, setDifficulty] = useState("");
 
-  const [topic, setTopic] =
-    useState("");
+  const [topic, setTopic] = useState("");
 
-  const [loading, setLoading] =
-    useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleGenerate = async () => {
-
-    if (
-      !role ||
-      !difficulty ||
-      !topic
-    ) {
-
-      alert(
-        "Please select all fields"
-      );
+    if (!role || !difficulty || !topic) {
+      alert("Please select all fields");
 
       return;
     }
 
     try {
-
       setLoading(true);
 
-      const token =
-        localStorage.getItem(
-          "token"
-        );
+      const token = localStorage.getItem("token");
 
-      const response =
-        await axios.post(
-          "https://interviewiq-ai-xutu.onrender.com/api/interview/create",
-          {
-            role,
-            difficulty,
-            topic,
+      const response = await axios.post(
+        "https://interviewiq-ai-xutu.onrender.com/api/interview/create",
+        {
+          role,
+          difficulty,
+          topic,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        },
+      );
 
       console.log(response.data);
 
-      localStorage.setItem(
-        "interviewData",
-        JSON.stringify(
-          response.data
-        )
-      );
+      localStorage.setItem("interviewData", JSON.stringify(response.data));
 
       localStorage.setItem(
         "interviewConfig",
@@ -94,58 +64,40 @@ const Dashboard = () => {
           role,
           difficulty,
           topic,
-        })
+        }),
       );
 
       navigate("/interview");
-
     } catch (error) {
-
       console.log(error);
 
-      alert(
-        error.response?.data
-          ?.message ||
-          "Failed to generate interview"
-      );
-
+      alert(error.response?.data?.message || "Failed to generate interview");
     } finally {
-
       setLoading(false);
     }
   };
   const handleLogout = () => {
+    localStorage.removeItem("token");
 
-    localStorage.removeItem(
-      "token"
-    );
-
-    localStorage.removeItem(
-      "user"
-    );
+    localStorage.removeItem("user");
 
     navigate("/");
   };
   const handleSettings = () => {
-
     navigate("/settings");
   };
 
   const handleAnalytics = () => {
-
     navigate("/analytics");
   };
   const handleHome = () => {
-
     navigate("/dashboard");
   };
   const handleInterview = () => {
-
     navigate("/interview");
   };
 
   return (
-
     <div
       className="
       min-h-screen
@@ -155,7 +107,6 @@ const Dashboard = () => {
       overflow-hidden
     "
     >
-
       <div
         className="
         w-[85px]
@@ -170,7 +121,6 @@ const Dashboard = () => {
         backdrop-blur-xl
       "
       >
-
         <div
           className="
           flex
@@ -179,7 +129,6 @@ const Dashboard = () => {
           gap-5
         "
         >
-
           <div
             className="
             w-14
@@ -196,9 +145,7 @@ const Dashboard = () => {
             shadow-lg
           "
           >
-
             IQ
-
           </div>
 
           <div
@@ -209,7 +156,6 @@ const Dashboard = () => {
             mt-6
           "
           >
-
             <button
               onClick={handleHome}
               className="
@@ -229,15 +175,11 @@ const Dashboard = () => {
               shadow-lg
             "
             >
-
               <FaHome />
-
             </button>
 
             <button
-              onClick={
-                handleInterview
-              }
+              onClick={handleInterview}
               className="
               w-14
               h-14
@@ -255,15 +197,11 @@ const Dashboard = () => {
               duration-300
             "
             >
-
               <FaRobot />
-
             </button>
 
             <button
-              onClick={
-                handleAnalytics
-              }
+              onClick={handleAnalytics}
               className="
               w-14
               h-14
@@ -281,15 +219,11 @@ const Dashboard = () => {
               duration-300
             "
             >
-
               <FaChartBar />
-
             </button>
 
             <button
-              onClick={
-                handleSettings
-              }
+              onClick={handleSettings}
               className="
               w-14
               h-14
@@ -307,19 +241,13 @@ const Dashboard = () => {
               duration-300
             "
             >
-
               <FaCog />
-
             </button>
-
           </div>
-
         </div>
 
         <button
-          onClick={
-            handleSettings
-          }
+          onClick={handleSettings}
           className="
           w-14
           h-14
@@ -338,11 +266,8 @@ const Dashboard = () => {
           duration-300
         "
         >
-
           {initials}
-
         </button>
-
       </div>
       <div
         className="
@@ -351,7 +276,6 @@ const Dashboard = () => {
         overflow-y-auto
       "
       >
-
         <div
           className="
           absolute
@@ -382,7 +306,6 @@ const Dashboard = () => {
           py-8
         "
         >
-
           <div
             className="
             flex
@@ -392,9 +315,7 @@ const Dashboard = () => {
             gap-5
           "
           >
-
             <div>
-
               <h1
                 className="
                 text-4xl
@@ -408,9 +329,7 @@ const Dashboard = () => {
                 text-transparent
               "
               >
-
                 InterviewIQ
-
               </h1>
 
               <p
@@ -421,17 +340,12 @@ const Dashboard = () => {
                 md:text-lg
               "
               >
-
                 Smart AI Powered Interview Platform
-
               </p>
-
             </div>
 
             <button
-              onClick={
-                handleLogout
-              }
+              onClick={handleLogout}
               className="
               relative
               overflow-hidden
@@ -451,11 +365,8 @@ const Dashboard = () => {
               active:scale-95
             "
             >
-
               Logout
-
             </button>
-
           </div>
 
           <div
@@ -473,7 +384,6 @@ const Dashboard = () => {
             shadow-[0_0_80px_rgba(139,92,246,0.15)]
           "
           >
-
             <h2
               className="
               text-4xl
@@ -482,9 +392,7 @@ const Dashboard = () => {
               leading-tight
             "
             >
-
               Design your session
-
             </h2>
 
             <p
@@ -494,9 +402,7 @@ const Dashboard = () => {
               text-lg
             "
             >
-
               Configure your AI mock interview parameters.
-
             </p>
 
             <div
@@ -505,9 +411,7 @@ const Dashboard = () => {
               space-y-8
             "
             >
-
               <div>
-
                 <label
                   className="
                   block
@@ -518,18 +422,12 @@ const Dashboard = () => {
                   mb-4
                 "
                 >
-
                   Target Role
-
                 </label>
 
                 <select
                   value={role}
-                  onChange={(e) =>
-                    setRole(
-                      e.target.value
-                    )
-                  }
+                  onChange={(e) => setRole(e.target.value)}
                   className="
                   w-full
                   bg-[#020824]
@@ -542,33 +440,18 @@ const Dashboard = () => {
                   outline-none
                 "
                 >
+                  <option value="">Select a position...</option>
 
-                  <option value="">
-                    Select a position...
-                  </option>
+                  <option>Frontend Developer</option>
 
-                  <option>
-                    Frontend Developer
-                  </option>
+                  <option>Backend Developer</option>
 
-                  <option>
-                    Backend Developer
-                  </option>
+                  <option>MERN Stack Developer</option>
 
-                  <option>
-                    MERN Stack Developer
-                  </option>
+                  <option>Java Developer</option>
 
-                  <option>
-                    Java Developer
-                  </option>
-
-                  <option>
-                    Full Stack Developer
-                  </option>
-
+                  <option>Full Stack Developer</option>
                 </select>
-
               </div>
 
               <div
@@ -579,9 +462,7 @@ const Dashboard = () => {
                 gap-6
               "
               >
-
                 <div>
-
                   <label
                     className="
                     block
@@ -592,18 +473,12 @@ const Dashboard = () => {
                     mb-4
                   "
                   >
-
                     Difficulty
-
                   </label>
 
                   <select
                     value={difficulty}
-                    onChange={(e) =>
-                      setDifficulty(
-                        e.target.value
-                      )
-                    }
+                    onChange={(e) => setDifficulty(e.target.value)}
                     className="
                     w-full
                     bg-[#020824]
@@ -616,29 +491,17 @@ const Dashboard = () => {
                     outline-none
                   "
                   >
+                    <option value="">Select Level...</option>
 
-                    <option value="">
-                      Select Level...
-                    </option>
+                    <option>Easy</option>
 
-                    <option>
-                      Easy
-                    </option>
+                    <option>Medium</option>
 
-                    <option>
-                      Medium
-                    </option>
-
-                    <option>
-                      Hard
-                    </option>
-
+                    <option>Hard</option>
                   </select>
-
                 </div>
 
                 <div>
-
                   <label
                     className="
                     block
@@ -649,18 +512,12 @@ const Dashboard = () => {
                     mb-4
                   "
                   >
-
                     Topic
-
                   </label>
 
                   <select
                     value={topic}
-                    onChange={(e) =>
-                      setTopic(
-                        e.target.value
-                      )
-                    }
+                    onChange={(e) => setTopic(e.target.value)}
                     className="
                     w-full
                     bg-[#020824]
@@ -673,49 +530,27 @@ const Dashboard = () => {
                     outline-none
                   "
                   >
+                    <option value="">Select Topic...</option>
 
-                    <option value="">
-                      Select Topic...
-                    </option>
+                    <option>React JS</option>
 
-                    <option>
-                      React JS
-                    </option>
+                    <option>Node JS</option>
 
-                    <option>
-                      Node JS
-                    </option>
+                    <option>MongoDB</option>
 
-                    <option>
-                      MongoDB
-                    </option>
+                    <option>Express JS</option>
 
-                    <option>
-                      Express JS
-                    </option>
+                    <option>JavaScript</option>
 
-                    <option>
-                      JavaScript
-                    </option>
+                    <option>Java</option>
 
-                    <option>
-                      Java
-                    </option>
-
-                    <option>
-                      DSA
-                    </option>
-
+                    <option>DSA</option>
                   </select>
-
                 </div>
-
               </div>
 
               <button
-                onClick={
-                  handleGenerate
-                }
+                onClick={handleGenerate}
                 disabled={loading}
                 className="
                 w-full
@@ -735,21 +570,12 @@ const Dashboard = () => {
                 disabled:opacity-50
               "
               >
-
-                {loading
-                  ? "Generating..."
-                  : "Generate Interview Session"}
-
+                {loading ? "Generating..." : "Generate Interview Session"}
               </button>
-
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </div>
   );
 };

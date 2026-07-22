@@ -2,13 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
-const {
-  createInterview,
-} = require("../controllers/interviewController");
+const { createInterview } = require("../controllers/interviewController");
 
-router.post(
-  "/create",
-  createInterview
-);
+router.post("/create", createInterview);
 
 module.exports = router;
